@@ -66,6 +66,7 @@ readConfig().then((CONFIG) => {
 
   // Setup socket.io
   const io = new Server(server, {
+    allowEIO3: true,
     cors: {
       origin: "*",
       methods: ["GET", "POST"],
@@ -186,7 +187,7 @@ readConfig().then((CONFIG) => {
           clientId: socket.id,
         },
         CLIENT.get(sToken)[socket.id],
-        data,
+        data
       );
       io.to(`${sToken}_web-client`).emit("clients", CLIENT.get(sToken));
     });
